@@ -89,7 +89,7 @@ def line_graph_meker(relayoutData, product_value):
     files = os.listdir(path)
     #dates for plotting
     dates = [date(2020, 1, 1)+timedelta(int(f[:3])) for f in files]
-    paths = [os.path.join(path, _) for _ in files]
+    paths = [os.path.join(path, _) for _ in sorted(files)]
     means = []
     for file in paths:
         file = h5py.File(file, "r")
