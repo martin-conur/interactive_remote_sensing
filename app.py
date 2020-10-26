@@ -160,7 +160,8 @@ def histogram_maker(relayoutData, data_dict):
           Input("rs-dropdown", "value")])
 def product_updater(date_value, product_value):
     # day of the year
-    doy = (date.today()-date(2020, 1, 1)).days
+
+    doy = (datetime.strptime(date_value, "%Y-%m-%d").date()-date(2020, 1, 1)).days+1
     path = os.path.join("data",product_value)
     path = os.path.join(path,  str(doy)+".h5")
     file = h5py.File(path, "r")
