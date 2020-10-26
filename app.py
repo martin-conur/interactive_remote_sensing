@@ -106,7 +106,7 @@ def line_graph_meker(relayoutData, product_value):
         x_filtered = np.flip(x, axis=0)[int(sub_data["yaxis.range[0]"]):int(sub_data["yaxis.range[1]"]),
                                  int(sub_data["xaxis.range[0]"]):int(sub_data["xaxis.range[1]"])]
         x_filtered = x_filtered[~np.isnan(x_filtered)]
-        means.append(np.mean(x_filtered))
+        means.append(np.round(np.mean(x_filtered), 2))
 
     units = "°C" if product_value == "sst" else "ug/L"
 
@@ -160,7 +160,7 @@ def histogram_maker(relayoutData, data_dict):
           Input("rs-dropdown", "value")])
 def product_updater(date_value, product_value):
     # day of the year
-    doy = date.fromisoformat(date_value).timetuple().tm_yday
+    doy = (date.today()-date(2020, 1, 1)).days
     path = os.path.join("data",product_value)
     path = os.path.join(path,  str(doy)+".h5")
     file = h5py.File(path, "r")
