@@ -12,6 +12,11 @@ import h5py
 from dash.dependencies import State, Input, Output
 from datetime import datetime, date, timedelta
 
+# Preprocessing dates
+path_ = os.path.join("data","sst")
+files_ = os.listdir(path_)
+#dates for plotting
+dates_ = [date(2020, 1, 1)+timedelta(int(f[:3])-1) for f in sorted(files_)]
 # creating the server
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LITERA])
 server = app.server
@@ -37,10 +42,10 @@ app.layout = dbc.Container([
                 html.Label("Fecha elegida:     "),
                 dcc.DatePickerSingle(
                     id="date-picker",
-                    min_date_allowed=date(2020, 10, 21),
-                    max_date_allowed=date(2020, 10, 25),
+                    min_date_allowed=dates_[0],
+                    max_date_allowed=dates_[-1],
                     initial_visible_month=datetime.now(),
-                    date=datetime.today().date()-timedelta(1),
+                    date=dates_[-1],
                     display_format="D MMM YYYY"
                 ),
                 html.H1(),
