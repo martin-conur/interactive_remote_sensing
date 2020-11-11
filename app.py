@@ -88,7 +88,7 @@ app.layout = dbc.Container([
              [Input("map-graph", "relayoutData"),
               Input("rs-dropdown", "value")]
 )
-def line_graph_meker(relayoutData, product_value):
+def line_graph_maker(relayoutData, product_value):
 
     path = os.path.join("data",product_value)
     files = os.listdir(path)
