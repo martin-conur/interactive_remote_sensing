@@ -16,7 +16,7 @@ from datetime import datetime, date, timedelta
 path_ = os.path.join("data","sst")
 files_ = os.listdir(path_)
 #dates for plotting
-dates_ = [date(2020, 1, 1)+timedelta(int(f[:3])-1) for f in sorted(files_)]
+dates_ = [date(2021, 1, 1)+timedelta(int(f[:3])-1) for f in sorted(files_)]
 # creating the server
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LITERA])
 server = app.server
@@ -93,7 +93,7 @@ def line_graph_maker(relayoutData, product_value):
     path = os.path.join("data",product_value)
     files = os.listdir(path)
     #dates for plotting
-    dates = [date(2020, 1, 1)+timedelta(int(f[:3])-1) for f in sorted(files)]
+    dates = [date(2021, 1, 1)+timedelta(int(f[:3])-1) for f in sorted(files)]
     paths = [os.path.join(path, _) for _ in sorted(files)]
     means = []
     for file in paths:
